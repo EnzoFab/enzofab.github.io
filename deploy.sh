@@ -3,6 +3,10 @@
 # abort on errors
 set -e
 
+echo "Linting.."
+npm run lint
+echo "Building. this may take a minute..."
+
 # build
 npm run build
 
@@ -13,7 +17,7 @@ cd dist
 # echo 'www.example.com' > CNAME
 
 git init
-git add -A
+git add .
 git commit -m 'deploy'
 
 #git push origin master
