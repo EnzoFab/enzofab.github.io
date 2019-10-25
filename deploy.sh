@@ -20,10 +20,7 @@ git init
 git add .
 git commit -m 'deploy'
 
-#git push origin master
-
-# if you are deploying to https://<USERNAME>.github.io
-git push -f git@github.com:enzofab.github.io.git master
+git push -f git@github.com:enzofab/enzofab.github.io.git master
 
 # if you are deploying to https://<USERNAME>.github.io/<REPO>
 # git push -f git@github.com:<USERNAME>/<REPO>.git master:gh-pages
