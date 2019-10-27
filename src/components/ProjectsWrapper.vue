@@ -1,61 +1,87 @@
 <template>
-  <div class="pl-2">
-    <v-scale-transition mode="in-out">
-      <v-chip
-        v-if="mainTopic"
-        label
-        :color="mainTopic.color"
-        close
-        dark
-        pill
-        large
-        @click:close="removeActiveKeyword"
+  <div>
+    <v-container fluid>
+      <v-scale-transition mode="in-out">
+        <v-chip
+          v-if="mainTopic"
+          label
+          :color="mainTopic.color"
+          close
+          dark
+          pill
+          large
+          @click:close="removeActiveKeyword"
+        >
+          <v-icon v-if="mainTopic.icon" color="white" left>{{
+            mainTopic.icon
+          }}</v-icon>
+          <span>{{ mainTopic.label }}</span>
+        </v-chip>
+      </v-scale-transition>
+      <v-expand-transition
+        v-for="keyword in selectedKeywords"
+        :key="keyword"
+        mode="in-out"
       >
-        <v-icon v-if="mainTopic.icon" color="white" left>{{
-          mainTopic.icon
-        }}</v-icon>
-        <span>{{ mainTopic.label }}</span>
-      </v-chip>
-    </v-scale-transition>
-    <v-expand-transition
-      v-for="keyword in selectedKeywords"
-      :key="keyword"
-      mode="in-out"
-    >
-      <v-chip
-        class="ml-2"
-        label
-        dark
-        medium
-        color="green"
-        close
-        @click:close="removeKeyword(keyword)"
-        >{{ keyword }}</v-chip
-      >
-    </v-expand-transition>
+        <v-chip
+          class="ml-2"
+          label
+          dark
+          medium
+          color="green"
+          close
+          @click:close="removeKeyword(keyword)"
+          >{{ keyword }}</v-chip
+        >
+      </v-expand-transition>
+    </v-container>
 
     <v-container class="pt-4" fluid>
       <v-row v-if="projects.length > 0" dense>
-        <v-col
-          v-for="col in columns"
-          :md="12 / columns.length"
-          :sm="12"
-          :key="`cols${col}`"
-        >
-          <v-row class="mt-0 pt-0 flex-column" dense>
-            <v-col v-for="project in projectsColumn(col)" :key="project.id">
-              <project
-                :title="project.title"
-                :subtitle="project.subtitle"
-                :body="project.body"
-                :key-words="project.keywords"
-                :image="project.image"
-                :topic="project.topic"
-                @project::displayMore="showModal"
-              />
-            </v-col>
-          </v-row>
-        </v-col>
+        <template v-if="$vuetify.breakpoint.mdAndUp">
+          <v-col
+            v-for="col in columns"
+            :md="12 / columns.length"
+            :key="`cols${col}`"
+          >
+            <v-row
+              :class="{
+                'mt-0 pt-0': true,
+                'flex-column': $vuetify.breakpoint.mdAndUp
+              }"
+              dense
+            >
+              <v-col
+                v-for="project in projectsColumn(col)"
+                xs="12"
+                :key="project.id"
+              >
+                <project
+                  :title="project.title"
+                  :subtitle="project.subtitle"
+                  :body="project.body"
+                  :key-words="project.keywords"
+                  :image="project.image"
+                  :topic="project.topic"
+                  @project::displayMore="showModal"
+                />
+              </v-col>
+            </v-row>
+          </v-col>
+        </template>
+        <template v-else>
+          <v-col xs12 v-for="project in projects" :key="project.index">
+            <project
+              :title="project.title"
+              :subtitle="project.subtitle"
+              :body="project.body"
+              :key-words="project.keywords"
+              :image="project.image"
+              :topic="project.topic"
+              @project::displayMore="showModal"
+            />
+          </v-col>
+        </template>
       </v-row>
       <v-row v-if="projects.length === 0">
         <v-col class="text-center display-1"

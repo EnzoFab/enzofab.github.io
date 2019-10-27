@@ -33,29 +33,41 @@
         <v-icon>mdi-magnify</v-icon>
       </v-btn>
     </v-app-bar>
-    <v-app-bar
-      app
-      clipped-left
-      fixed
-      dark
-      collapse
-      class="hidden-md-and-up"
-      max-width="80"
-      :color="color"
-    >
-      <v-app-bar-nav-icon> </v-app-bar-nav-icon>
-    </v-app-bar>
+    <div class="hidden-md-and-up">
+      <v-app-bar
+        v-if="!showDrawer"
+        clipped-left
+        fixed
+        dark
+        collapse
+        max-width="80"
+        :color="color"
+      >
+        <v-app-bar-nav-icon @click="showDrawer = true"> </v-app-bar-nav-icon>
+      </v-app-bar>
 
-    <v-navigation-drawer
-      height="400"
-      :value="true"
-      class="deep-purple accent-4"
-      dark
-      temporary
-      fixed
-      mini-variant
-    >
-    </v-navigation-drawer>
+      <v-navigation-drawer
+        height="400"
+        v-model="showDrawer"
+        class="deep-purple accent-4 text-center pt-2"
+        dark
+        :color="color"
+        fixed
+        width="100%"
+        floating
+        mini-variant
+        mini-variant-width="200"
+      >
+        <v-btn
+          v-for="topic in topics"
+          :key="topic.label"
+          depressed
+          :color="isActive(topic) ? topic.color : 'transparent'"
+          @click="setActiveTopic(topic)"
+          >{{ topic.label }}</v-btn
+        >
+      </v-navigation-drawer>
+    </div>
   </div>
 </template>
 
@@ -67,7 +79,8 @@ export default {
   data() {
     return {
       color: "blue-grey darken-2",
-      topics: allTopics
+      topics: allTopics,
+      showDrawer: false
     };
   },
   methods: {
@@ -75,8 +88,6 @@ export default {
       this.$store.commit("selectNewTopic", topic);
     },
     isActive(topic) {
-      // eslint-disable-next-line no-console
-      console.log(this.$store.getters.isTopicActive(topic), topic);
       return this.$store.getters.isTopicActive(topic);
     }
   }

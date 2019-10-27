@@ -2,10 +2,11 @@
   <v-card
     hover
     @click.native.prevent="$emit('project::displayMore', projectId)"
+    width="100%"
   >
     <v-img v-if="image" :src="image"></v-img>
 
-    <v-card-text class="pt-0">
+    <v-card-text class="pt-0" style="width: 100%">
       <h3
         class="display-1 text--primary pb-1 text-center grey--text text--darken-1"
       >
