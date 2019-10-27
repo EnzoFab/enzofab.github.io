@@ -20,16 +20,17 @@
 
       <v-spacer></v-spacer>
 
+      <v-btn
+        v-for="topic in topics"
+        :key="topic.label"
+        depressed
+        :color="isActive(topic) ? topic.color : 'transparent'"
+        @click="setActiveTopic(topic)"
+        >{{ topic.label }}</v-btn
+      >
+
       <v-btn icon>
         <v-icon>mdi-magnify</v-icon>
-      </v-btn>
-
-      <v-btn icon>
-        <v-icon>mdi-heart</v-icon>
-      </v-btn>
-
-      <v-btn icon>
-        <v-icon>mdi-dots-vertical</v-icon>
       </v-btn>
     </v-app-bar>
     <v-app-bar
@@ -42,18 +43,42 @@
       max-width="80"
       :color="color"
     >
-      <v-app-bar-nav-icon></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon> </v-app-bar-nav-icon>
     </v-app-bar>
+
+    <v-navigation-drawer
+      height="400"
+      :value="true"
+      class="deep-purple accent-4"
+      dark
+      temporary
+      fixed
+      mini-variant
+    >
+    </v-navigation-drawer>
   </div>
 </template>
 
 <script>
+import { allTopics } from "../resources/projects";
+
 export default {
   name: "NavBar",
   data() {
     return {
-      color: "blue-grey darken-2"
+      color: "blue-grey darken-2",
+      topics: allTopics
     };
+  },
+  methods: {
+    setActiveTopic(topic) {
+      this.$store.commit("selectNewTopic", topic);
+    },
+    isActive(topic) {
+      // eslint-disable-next-line no-console
+      console.log(this.$store.getters.isTopicActive(topic), topic);
+      return this.$store.getters.isTopicActive(topic);
+    }
   }
 };
 </script>

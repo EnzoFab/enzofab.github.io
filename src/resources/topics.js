@@ -18,6 +18,7 @@ export const MOBILE = {
   color: "pink",
   icon: "fas fa-mobile-alt"
 };
+
 export const SOFTWARE = {
   id: "SOFTWARE",
   label: "Desktop software",
