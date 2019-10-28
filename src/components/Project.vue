@@ -27,12 +27,11 @@
           <span class="font-weight-bold">{{ topic.label }}</span></v-chip
         >
       </div>
-
       <div class="text--primary grey--text text--darken-1">
-        {{ body }}
+        {{ teaser }}
       </div>
+      <div v-html="teaserHtml"></div>
       <div v-if="keyWords.length > 0" class="pt-2">
-        Keywords:<br />
         <v-chip
           v-for="keyword in keyWords"
           :key="keyword"
@@ -42,12 +41,11 @@
           color="green"
           dark
           :disabled="isUsed(keyword)"
-          @click="addKeyword(keyword)"
+          @click.stop="addKeyword(keyword)"
           >{{ keyword }}</v-chip
         >
       </div>
     </v-card-text>
-    <v-card-text> </v-card-text>
   </v-card>
 </template>
 
@@ -58,7 +56,8 @@ export default {
     projectId: [String, Number],
     title: String,
     subtitle: String,
-    body: String,
+    teaser: String,
+    teaserHtml: String,
     image: String,
     link: String,
     topic: Object,

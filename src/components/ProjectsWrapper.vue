@@ -57,12 +57,14 @@
                 :key="project.id"
               >
                 <project
+                  :project-id="project.index"
                   :title="project.title"
                   :subtitle="project.subtitle"
-                  :body="project.body"
+                  :teaser="project.teaser"
                   :key-words="project.keywords"
                   :image="project.image"
                   :topic="project.topic"
+                  :teaser-html="project.teaserHtml"
                   @project::displayMore="showModal"
                 />
               </v-col>
@@ -72,12 +74,14 @@
         <template v-else>
           <v-col xs12 v-for="project in projects" :key="project.index">
             <project
+              :project-id="project.index"
               :title="project.title"
               :subtitle="project.subtitle"
-              :body="project.body"
+              :teaser="project.teaser"
               :key-words="project.keywords"
               :image="project.image"
               :topic="project.topic"
+              :teaser-html="project.teaserHtml"
               @project::displayMore="showModal"
             />
           </v-col>
@@ -90,19 +94,28 @@
         </v-col>
       </v-row>
     </v-container>
+
+    <project-dialog
+      v-model="showDialog"
+      v-if="projectForModal"
+      :project="projectForModal"
+    ></project-dialog>
   </div>
 </template>
 
 <script>
 import Project from "./Project";
-import { filterProjects } from "../resources/projects";
+import ProjectDialog from "./ProjectDialog";
+import { filterProjects } from "../resources/projectAccessor";
 import { mapState } from "vuex";
 export default {
   name: "ProjectsWrapper",
-  components: { Project },
+  components: { Project, ProjectDialog },
   data() {
     return {
-      columns: [0, 1, 2]
+      columns: [0, 1, 2],
+      showDialog: false,
+      projectForModal: null
     };
   },
 
@@ -123,7 +136,16 @@ export default {
     selectTopic(topic) {
       this.mainTopic = topic;
     },
-    showModal() {}
+    showModal(projectId) {
+      const project = this.projects.find(e => e.index === projectId);
+
+      if (!project) {
+        return;
+      }
+
+      this.projectForModal = project;
+      this.showDialog = true;
+    }
   },
 
   computed: {

@@ -58,21 +58,25 @@
         mini-variant
         mini-variant-width="200"
       >
-        <v-btn
-          v-for="topic in topics"
-          :key="topic.label"
-          depressed
-          :color="isActive(topic) ? topic.color : 'transparent'"
-          @click="setActiveTopic(topic)"
-          >{{ topic.label }}</v-btn
+        <v-toolbar-title class="white--text font-weight-bold"
+          >Enzo Fabre</v-toolbar-title
         >
+        <v-divider class="pb-2"></v-divider>
+        <div v-for="topic in topics" :key="topic.label" class="pb-1">
+          <v-btn
+            depressed
+            :color="isActive(topic) ? topic.color : 'transparent'"
+            @click="setActiveTopic(topic)"
+            >{{ topic.label }}</v-btn
+          >
+        </div>
       </v-navigation-drawer>
     </div>
   </div>
 </template>
 
 <script>
-import { allTopics } from "../resources/projects";
+import { allTopics } from "../resources/projectAccessor";
 
 export default {
   name: "NavBar",
