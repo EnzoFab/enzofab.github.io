@@ -4,15 +4,19 @@
     @click.native.prevent="$emit('project::displayMore', projectId)"
     width="100%"
   >
-    <v-img v-if="image" :src="image"></v-img>
-
     <v-card-text class="pt-0" style="width: 100%">
       <h3
         class="display-1 text--primary pb-1 text-center grey--text text--darken-1"
       >
         {{ title }}
       </h3>
-      <div v-if="topic" class="pb-2">
+      <v-img v-if="image" :src="image" aspect-ratio="1.6" contain></v-img>
+
+      <div v-else class="pa-3 text-center">
+        <v-icon color="grey lighten-4" x-large>fas fa-briefcase</v-icon>
+      </div>
+
+      <div v-if="topic" class="pt-1 pb-2">
         <v-chip
           :color="topic.color"
           dark

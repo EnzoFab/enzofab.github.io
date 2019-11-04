@@ -160,6 +160,7 @@ export default {
           index
         })
       );
+      //  .sort(() => 0.5 - Math.random());
     }
   }
 };

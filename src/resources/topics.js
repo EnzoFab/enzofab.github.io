@@ -7,7 +7,7 @@ export const DATA_SCIENCE = {
 
 export const WEB = {
   id: "WEB",
-  label: "Web",
+  label: "Web Application",
   color: "green",
   icon: "fab fa-chrome"
 };

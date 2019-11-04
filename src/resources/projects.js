@@ -1,4 +1,5 @@
 import { DATA_SCIENCE, WEB, MOBILE, SOFTWARE } from "./topics";
+import keywords from "./keywords";
 
 /*
   project structure possible attribute
@@ -17,90 +18,203 @@ import { DATA_SCIENCE, WEB, MOBILE, SOFTWARE } from "./topics";
 
 export default [
   {
-    id: 1,
-    title: "First project",
-    subtitle: "little case",
-    carousel: [
-      "https://www.w3schools.com/w3css/img_lights.jpg",
-      "https://img.lemde.fr/2019/04/22/0/191/1619/1079/688/0/60/0/e39da8d_2FIads9h8wB-0SwSgxVaVWsp.jpg",
-      "https://image.shutterstock.com/image-photo/colorful-flower-on-dark-tropical-260nw-721703848.jpg"
-    ],
+    title: "Titanic disaster",
     topic: DATA_SCIENCE,
-    teaser:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel justo eu lectus bibendum porta sed a nunc. " +
-      "Curabitur et lectus a justo congue congue non quis arcu. Proin et placerat sapien. Nunc vehicula vitae justo " +
-      "eu consectetur. Ut quis nibh vestibulum, consequat quam id, consectetur nulla. Fusce vehicula massa et magna " +
-      "lobortis, sed iaculis arcu convallis. Ut placerat tempor ullamcorper.\n" +
-      "\n",
-    fullText: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel justo eu lectus bibendum porta sed a nunc.
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel justo eu lectus bibendum porta sed a nunc.
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel justo eu lectus bibendum porta sed a nunc.
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel justo eu lectus bibendum porta sed a nunc.
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel justo eu lectus bibendum porta sed a nunc.
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel justo eu lectus bibendum porta sed a nunc.
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel justo eu lectus bibendum porta sed a nunc.
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel justo eu lectus bibendum porta sed a nunc.
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel justo eu lectus bibendum porta sed a nunc.
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel justo eu lectus bibendum porta sed a nunc.
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel justo eu lectus bibendum porta sed a nunc.
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel justo eu lectus bibendum porta sed a nunc.
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel justo eu lectus bibendum porta sed a nunc.
-    `
-  },
-  {
-    id: 2,
-    title: "Second project",
-    subtitle: "little title",
-    topic: DATA_SCIENCE,
-    image:
-      "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUcAAACaCAMAAAANQHocAAABg1BMVEX////c3tsAAADo9f4Mmv7g4OD///3V5/MAkv4AlP7g4t8AmP7k5OTk5uPv/P/s+f+Pj4/19fXv7+/W2NVSUlLy//+9vrwAif90dHSqqqq5ubmcnJxdWVLNzc1hYWHp6ekAfvw+Pz0Nnv8AVKY3NzcLlPUAj/4AZavKyspXUksAi//K5P0Agvx4eHjBwcG52v0SAABra2uCgoKurq7DzdUbGxskJCQCg9q0vsVTrf5ZWVlJSUkoLC5vsP3X6/+VlZUAJ1SCiI2aoqhuuf6Fw/6XzP6krbQeHh46pv6u1v8AADEANWIAetVIq/7N2OAASpQAKmAAAB4AW50Acb8APoEAS395wP8Ac9MAGUAAKU5GQDcAZMF+e3Zua2QhFgBHXXUvJxqtyetjhKNUofwcDABLbJEAbdoAGzEFVY0AABMANIAAEkN7qdUAAAqa0v+Nyv8AH0E3T2YWQmWSs9QAaNZNfbl4ip2gts49lOIFQm60zuMAT60AACgARYYtPEgWMEwmVn/EUFPuAAAgAElEQVR4nO2diX8aR5b4m9fN0TTQ3OIwINoIEyHAgEASEIiEDohHSmLFsic+NrPOJpmZxJ7jNzs785vZ2T99X1Uf9N0IeeJ8Zv0+to4WfX27Xr2jXlUzzAf5IB/kg3yQD/JBPoiLJN7biam8r7O/c4HS+zlvAqhUjRsj68n7uWRXeV8cSXtk4lAzbBvBelJ8T9fsItB4f+fOQ3Fi2HDv/tY68vnPh2MjpfwA6g/5n/waChBpDA1b7t3fNRLbfXr/s8+ebxm37m7CMeEgHrv5C2bxG/6e1/gpMjbe0V3kTWetj7XxEtpmjltbe9ua7D4HuPfi5Sv4+9Zq494mHPMb9hElqJnFBM4EcmxUsLvIsr7LrvGxBulR2heGbchx72jaVGT6b9BnmH6CSX0Ff1U3Nk/3bs+xD9c7DnJNzuEoxbJlU9qkuHlyMWLnbDnF78nRLa/MRVhhscanStAmX9OGjYTjxzFRlkwPksSuk/tsAatsFZcbcPz6gcQ5iPTga5cdkaPBUfBHLByJnO5toxoJ01telotM3749k47O3p6K7p/zQ8Fmq8yRpSLuQ4VhekT10M8ZdzPK5uXe8y9w20U8uf5VvTpwwshxB+CyI3L0G8SW4+tt2m/vbTedj5Roz17c+8gqubbtx5chgUrdrNqFnv63CNiaNT3HzDhOlD85bPSqZIegvDn2q09hth+8Oh/bH8JWXl27cHzosiNpj54c59uqBdxzOk7/K4BH3z+wke/B2nWgdJAjuTrexLEN0F39lnTo3RWOIjY7NkiaY3HEDBqVAf6peiKyROOvICfGYldsLHMIcRcCBnl1IDnKnTmKGsatvVPbozQAHuw4nZ+z1czl0VISKMczfSMvoVEZjtXfkk4ElP7xTSj0JrYPjNwe5UAh3o1NF/WbGLQybIyFE/x6BfY6YZWhq1fvsuM6er1Ejnt7+G9va6tud5AZPJAc+2dOevyR/bmXcoPkdcdMQZYhPoHsrSWgZ7+n2h7xAELmkLRC2j+26B2NMnOBE/79IsbGjnHjJMjGTtwQ6AX6fkfpe3BMJPWS0HGs1MbVHDEyW1sfv95+vXy9t7WNjx63GrStCAfOFJHj9SubE0+nzJxwFN7yl9pGv+JbdIHahkHO6bKV9sgJgiS3R4Q+KFZJj9DLZeY8J8G5iAZof3I+KKP+rxuMuQW/JQ+OZllxTPT7/TbhuDcVmWVnyvB720gXt+pdSr87Ro67/sbmxMuQJDdHnb2uaL1hj5jeoW3HSkXh2JGkpsiSz5b6zKDkJ3daO0G9FuaAXechXE0Or/ZFNtN1atgmuQvH6XSKfX1z2hQZtonNxEavdxn+NdPZZj7eC1kP8dETd4zS9dc2J+7wFKPeziRhtrouSFXTNrspotqZWAwhpRFS/oK5KOVr5KkSnwetDLFBXTRaV+gHxY67zsfSy104CvX6x8x0N7TbYU7robqdndleMgw2HHbPxs5UYMcVIzqwX9mceLkbCnFCKLQKaYy9YR/GNnupYvAfrwBDWRhCjVCotWLyNsIxE7yYoIL/NBznR0dvGfby6LKJRvToyMbvOd3e3mK2pqfbezZ+T/+Ze3NEO/PS4eTS3HAPxt7QFNYbxRjPzIhmF6CFnepoKG+7QjdSPDxnhvvHkGEz5VtyTI6AuApjaqaVx7t5/6jJ6+095Hizt20T0LzwUGtOevLC/txLXu+Eu/SGViEcX3dUaf4HzBJMt8K0Xz1bypv+CCcx8ZzYmfEYFRtuybFbjpSws46UUil/T7kw7/6xOXXtH1E+3mN22dM9u7TCy8cKRxWnhlXidmSOViewRBybqT6+dusNrWLK92w9/RS+fvkRwGdqvudbAFb2e2pBNnMMjpbfKHq9bivc1HDIs38MufePY3TL0p/WPp1892kDwy6zvikcpetfKt7q9/Lv0sETgC+QpPTIEpMU4MK0JV01f8ZVzPnH3d2t5/efP91Vt+5+C7V0TIyJcJ4RMaCpbmCvCzK3spqZ8eJ4dHmJ/eOC9o/YS5o5kkRZAvKFQiFbK9rkI19QbtITmKVIoqNSInZHkq6fwctU4sXfJE56Zk44oTEum8YJ1szGqU/k3uf3PQQKF9VghsaFJ5Cvrpn40XFMyO3QD2oG9279Y29Ij0n94jK5mrzpcLNHyFH6/qGWVUF3cud7eFgk5w/AASf92hSVxYl9ren1uLxmbnikDncV73nIR1CulKF8fniIup0tyaGOt+g41uR22NX29OKI1i3GkK+M/NXIUX4ak3QPRY4KTGmo7BfIcQdWWXR48AncU+OHh8jR5Ey0SF6BYS5WXX9Of4VsEMU+v5seJqo1279YJAJQSDZaNRiO8pVK7bZ2Bh+tcqKV+nlx5PjQnJnW+Tr2jyE+ZGtnkse/+fI3/5a1O4IfSHO8t9pQhnhF+wU5cmAYqSiDOXjugW7wI6iIzZnSpNVW1+tI/XAChUqlEiH/07XcbTlim0mRy06t4HlxXHAcchQkocm8xRjDliPD1Le37RtJAvtDaxeoykNUctC34LTWE6o5sZn+78GgI8i0rPzrgfTD/gm0SoRiHybs8JYcK2p+p0GjgUqj3W4U7+4/Elk6JcNfXUuSYx6ActQ1t5ouSpFT3XlYtV5GXHE058lHqolfC6Qfw6GrMVxUawAnaLDvFM/kAAYYGL0bjo5y77E7R10+PjEwDO+kcLe+TusTQb2Yrmqg/bhOH+kn+DLB85PzfTHDwib+oya9AVGYnBdHjK/nDIvhLpG6TXztIfFHHhy1tFnSfDttmOncKCNGY4NM6y36OiChiCBjRDJB6I5u7/esLos+6fIX1x4cJZ5HjnV5uETgb82x8Dd3jlq6x2/Nbvf1OwbNsvpT2ugYrQFyHG9D7TDIslcYzPgt0YOD2HGk2bgy7HiNc5lldEuOfnDnqKV7ejaNQl+mYOGoGbb0MGDczbuPbIDfT8cQYVxI5NaNlpw4IkbJlWMBWii5XK6lydqDGdohdlw5PrZLm9mJhaPaIJXWqK8e8wZZrkUqkVK74a8ki7Bu4ZkDxy6J0Vw5MoW4WexGpVxkBg8PFi4cF99ZgmkHcWqPaXn/kkE5vUFWB+0KkcgtWkbaJg6PQPcLDHQXTxyGmd6N+KHSe+bG8QHQTIdRKqV222/5sH1z1DAafVTvPjIOtV5x1oWh9UxOEoFy3iwzgMcPHjx4BOsfZgOJo2f2zRNnjk9QVVJGjaiQfmsyID2X6dOsXWuUldqMcR2QiXx5nO7dqm6z0kubZVQuk4D9RcV77ztILk7u0TEfPyAecEXviWN8/ejgSS4TE69OnPfTRMHYsKlSWjfW/tkI21menTnEM8UR0e2Z7d8YoigtY2Ra+ebZgYQ2PMOyYkw88Sp1cMG4dqz9T5SecuNrVFCLZwvZRQ8Jc5vyngY4FuHQExBQxVWOrAJ0GOIA5GqmzJXjUD8VR6WW5T2DTFQHikJhR/XNVy9n/ZKj8r/l+ZDw8enZ25sF/rSwNMokJNWUp51ESDKivGqur+TRnB21mkm8cisrdDAxK3mvql2CdHRGu6wEfPvt0/ufff5b5Pnwo5fFgtntZyU+NG8GZBHf4G9vzUcjJsaNY19fWt5TBhclOBSVsrBDcCwZ1lqjsyv2HkEWIR71RUfkAiqgjG7sbn37nPI0hhxTnl9MkSDb7HSmDP7wNsTPTYcjSXI3jgU1m07Pp9QXSp+cKKPPbCbtlKt27RtVeW8gR5CN+ny+8IAagK0tnidjbLQIarf+N0OqlsXIG+G9kZTuEZE2BTPIeNmdY0lnZuKfqGOLT1oqR3HfIU5YC+P7AhmBairs87O+cANbSuHT3e0OmpJp5+zj13UEaYznJYKxiRSl+SntHm8CgakQWhqOmEK9rLlw9DNdLfn38Frl+GCscmQz9mq7Jsb3AxLD6WjYV8Gr90XzkCx+vqsb2u9sbxn6qht+EQh0QvzRVO4eT1HLGbLBmGLtwmzgmJaKQK+sJWqTqxKWAxBVjrGcnclWUhPOJmYlPz3IFuRRp0kZK1vxRXOTl59tbRMoZ1RZz/a+NQw48TwbaIZCbwKBRGe5ZAOBoMRfBgJzs2b3c0MX/zG3qs9OgVZksQOsCjJ2YlMCoHN48j018nc6yU8MMjkclKKo02JziveAtqYG9+VK5RBXn5Kiiedf6z5+yt8EGC60DAROaYb3kg2IAn8WYPmQOeffc3QCI/onU4JVrQV0D8UMRSmeW71ATalR5YtaIsrR2f1JQTagHA77oqx4Wq838frDvhQ8lQvxLkMCfn29d1837Mdw/DTwlvSQC16Yn51KPP7e4YUENsil6dA2WUxFSvYcpSckM9g9ZBGleGKpLNNjXIlL9ssKksXwfJ3ZObeWPBRRp7FrjC0E/i0ZtA774Nu91/SPTdLCQltfknalTAKbhqRAgEPVxm5SJP3jKc8xyHSJPeSR6dhtx9RcT084ouq1dA0pKLRzAOVzNmMpqlP6RrOJWXG0Rg1GkOwp+hZ4G8sj8xO/u1QIxwidWCJIbPPmcnH0A2ztfbz6hDxvp0RayjDBdNA6T0OLABsSYoHO/JQJzENngSV/hFsk88HBdmibWBZDIkJ1H3eQUHxSqUTaLUQ5MVl7g6W+XDWqFUcoW/IbOpDivD4PsDdT9k2A5bh3TrIB7bCPdkisOKezLq5hTzczjd3e/ZEkPHPEVbkIvBGWTEd4S/8veQEtzDSE/3lspTxvPnbBYQBkYmxqL+WoUPpdmc6/ivgjkQi2SmPzMkQxC17SrlDPEYZmV0sDSVxc7IDqzWl9kWAFi/LcWeKA/jc1kQuBltU9+N2WrgtBjnKqsgXdLgx//+j3L9X/f3i0w9VZRuDQyKBycyFLz2Ofuk+buq0GyIWldCZKcVAh0wAqPWP3aMQocIIGclUvACnfbAAt4ymVk3XqgoRuhsBPp7ywID265DFljEglgn1ZJUVmyHvnGcdj4vVgayQYd/4B8BvS6AuqjpzuyUH3RSuShfgPv/hj6odf/ODD774/XXNciIlhW1Q4Wq9sBtbz68acFfkKG6R0oDReyEf8/kjJqPpjvYmhz5tXGxSMyopAKRyOZstQLej83Ra9+mad4zsBshty5PjTwJEgWLoho7SgKi85QNLLyg+uc+kS0Iv6wiweHxvFX/7B/eUzcnXQY/xVmgf8f8RcJAGKRdz2JnTGdNBVbIbmqSspVCf2ZR5oEt88ZNFrhlTEmM9dto7L+AEjGjVbmQdskBGj6ivTaXUYBU0v8zMixWJxRjk2WjDJrzh2KUYRd5ECZ7zCEe1kk+cEc07AKBAvlBJMst1PMu0CtoZUv+0xooNGEqMZUsWzI/14fQ3/ziTjRKtg1hjmGOZPZGQv0s11u0UycQ076xAXCEhPf8UEmmwgJoWaaLTnxPrYXo4JZNcutdiHg79o44dQrESM07nTLhj1p0qF8zUo6/tkGSMz54mLywmCEGpO0Qhgg5QEoe4yL1Ke322UsVuNP5E8XkF4LkhPvlt8jw34jyQBORx1oRQho7T/qa8aQQ0mrmOH+fNT4SxG4mxEyAh8M7AM2T5fyOlHaZLpi55dUU0eVrFnH0qTiT4S1fuNojNGBtDMzwxPTcHIXh4dXbJB/Hp0OZ2Sb/PAGX69caXSNw1hpXVVrQUYDtR5ccPVKhndSTR8JHCws/MdPIYzNHOzdr5KPzmMGMOSBTa/TkgqRTuhEC8JodBRAH1JNNeLkM08/kgXkNEwR+K32aw3hjKTtw0XG1BTlSYJxvpOtWqCFvKxxKOgGM8srQnGJr3r6hMDCUPRQMBUQmAnRUPn3tV7w4kSnBwqMpzpqjxz0Rvk+BiePABA5zE+jNC6r/ygYKpIeUOC6cun/8WgL8bV+aNOIPAmhGybNPgxC+2bE4U4qSnodnv5CvEP7LuZGfqMs3yxNYSRQaFWxSc50kWwqJ1kytwST2o6gnkEVMNI2uFNYE4a4mI6XZBvTRG/XXp4kfrOvWdKLMOVMsEkM9HdTgXyf+WlR/Bg8Rf4jsyQbJGZIqkWcXp/NI6ectjuGgfCglXy4YGbUOgt0fUz64X0AQ9k3FSASMEhzikVu+lyr2C8Xr2T1JJBktb4JoS+AgXJOvkvGkaRxx7xhvSIav9Iekvyzd3S4JMb9hWx2Eu4UlP3E32Y2oaGxF3/AeDX3/9yT33QpRYiXJq6iWWIa0RZUkbVZBPi9IzjQ6ckPLRxIxKk5Rm9RTIDmKmtOU+AMU/8l0EyMkaOqyPCmOSwDMNKqYmFFs4CNGaS7TUnIFb85rWCQ/V3nyjyyDwWrONoiNp632CDlA6upe//bpgGHNsyt56jpwexADMP8TxaQRSpiarNh2wGYLs09aWvepXHECO3KEJoW0EqGNG4YVvDVmZLQ9c3NgnHZULQc5wHFviV8zg5XB8osvPMFClpQ0msya5X7/2KTJKU/vDZ1t5KVUT+WzPHwH8JUjAQYE8XiJEjHSS2RhsjU+nLN51YjUar1d/x2vprYxlB0j6SocYmJGPEn2hocmaY5Kg3MXYc5fbo4Yr79dPVTXnO+FgeI46dm/gkYHZ1hE3su+dbu/IW7CPzH+89txaGLXjsX1AYkaZ8pgteP6rgzxb78RGdQy/3rBGNhDJrgknTyrlevl9seAO1AUmmWBOMMUkLbc5CvA6kwVKrek0/Ow0KkiQJp+RXj5VZivpChhTUTIbmmCRKM1eW8Y8SGepqNuHpntzcs4DR2fPdz2zmU96EeOFUHldgO0chniNKnfAXil0SRQ1r0C22I6tJNQ2l6asTYrJAitTzvSrQKY/pVr7thrNhBclyFoxodzSQXaNxFbQGyHF/Pfn8k0+eXC8DIc4joumZFLZsPKgfqthFHtsslVFEd9xXUbJm7OXfUQfjn9c/t0vcTy9DPLqPC1TtUEh4ywT6ZQIw3ZplS9Fo9EIxJBerWI8hHo98IQE1g1jrRqPhRj+eG6OrOog7dpoNG2Njxchx6gRPE0aiPxi4Yo/O7TyC8Syff/EQTsjSDW4rV8UtqYGcUYMTPRDLVbuM1qgaDWdhl06nfsuRWRv939Z/az/qN8XukQwsSCQpWoRBr58KI8FwOOwjo46yT1VSvQXiffXV5E98om4Mk6HeMNnP1yimoew09m9rbEQzRl4xdWaMzJTMdQ1MO80f4KVyQQX4Q6fj5j62bWzhyDjUUQLWwfOAVjT/xS6Zn46BNLH0/d/u/trZSWGnU9LDB2rQR4K+lUSLyq101ZhyVC2p8WFF0ZcGNHT7IM1S2tGO24FcrIuRTkgTE4GYn3gLSTLdkeSvXmYcb4wEVdoJT1dBqEGJR3CSuRrYplgj0J+pg65NcrH5z7e8J5lMqmE9RAoyPVYuR3W7qtpwQFo+INq1qHGncLTnONhiY2wwslkTI3O2G6rfBBbEbvj9EbKkDik/uu8yUjPSRj6aC2GpfjCl0/VqjY2xYubE9pILcO/vu3uvT5dNlo5FFZGj19plvYGZIhHl0WnTnXrqJTSU+0yPo5adojnHIR2bFsmui1HO/DLFIcGYYJI0UUytnZOU1KM0+bog1Otqk9T0C3speYg4c2w7KtmC+7tkTZ7t7f9P/J3il089spdotxo2HLGfVdKyMs8k/E5p10q1Cho1G/rRC8fhaGJskhWilGQZHBqnsXR83YCxbF9fhY4S//ZVgYn4mYqy8E6CcSm0GiuXwYaE5SXXmdeV1FBS63lqpBSJkrRJVaM8vC9XSO1+SdY9iH/5/KOee0F8t2xtV4RIT37cypPt/XJHPt9Mzob7Sc7TFr/TU0tU9V5xVw1418JIjRKZiedPJtUFjCpMz3HacEQ9zFm9yRwJDCOpIZ42YRj2RTa2JI74hW3ahbjIf3v09/vPqZ2Of/nZC2boNn0sAVk7IAiyJjfAUZd+6kB6RB6M2mHCC1v6vmjVoUGmoFvSECf6Q8XYrIkRZf6Lb9DFXa2TFWH6jvWmcVV9T0Mi5ciqUa828o7xtTgPLaaiKb7WpEEGEL6+94recO/zz2d47y7VNP2BPRBfOCXrTZIoePx3EndAbrIs99/didNeTutcGYuk+zW1jyTOzzoYGebPgD2jbtk2puA4T36gavwZuphHhoSg6nXAFXvJC4LQyUwcuoeZPDeWPu4+TRY2XGoWyi0HIqTkimpyfCgPUUuf9FSHsgAl+0aMIO2zk6b1BmirVUNEdxOjSQqwPeqXbMs7LSKS1A5E+0ehozPsXUVf4K9Hi8vLy8WiWXMatRnnh3G1BKdL/Zeec6WMfT8ngyzLDjf0i3+Ty78ZuQQtSQuzHHayn1w+1FQiEWnkq/LFKe7PWq2R9C0R/ep3SabsZNMaq4dmstf4QCmQvmHFPcsAqCqR1ZgKKSzFS3Ca0ZgCJyC0bVEfvg3wJzpC/d/KGWv2pknexzbLq6yrUa7JcwNVHW/prJIXRmqEkzq1dr4pQ0NtLrjlUV0bypEZJ0p6cc4CFnRFx3R+rFMJXm/kjMQXbsvPI18USVbgKCGP0cfd2CN8m9kzcblbLQ9TBbsQkVkHI3UdtP4RXSfHtYHiBpUg/eOlNqaccvE6baSl9cGy29JzYA55R7UmSjpT724uaNagRCphXPYZ2QSiCjwyDcLskMsnWAOjvEqH3CIjCTyOs7nWOBI7TTjeaKlt/+04mpydGtiv0eJ3bVoIZaw89CmvJfFJQb9be7RZ8UHz54ivZgQp/7wWRhLB4scSxI8na1k/cppyO9OCwputqew/ahnfW7ZHo7PThV7DdrJaPO3KxOdLKeELy6tJ01HVcxdLgFBUR+BpP9GwBCJrYiS5BXmAuzGGJwvpl1/bfyqrGY5pXepgPLOoa6mh/m2LUxtaCJSHaikajds9CCi6qaiPmg16mA76WsrBUh67RK31+VV1yyAhX5oR5NoYcVeMimoXAPESWXXWAaRu5uMyRO31KtW+7tqbK5kpK6NeQJEkxdT4RC9eak2oyAOvp4K8NmYE+h4YfeG4uf6jYPZfjSBvgZHcT6nQltfgcQapq70UO7p8D7PRC07SpG9rwDhFFTFcsk4DntnkbCwgaU97hBxJ9nmQ89wj3DBxKVvXJOnrQN4O40pkkLbT0A2+16m+CGa2ioH8a58WY7EezNQMbXRmuZ2hl1rL/LPyEMlb4gZ47+CLGtV2BnnzYuNJKGuf2RQjBbnYsd974pBS8GvNsb1aSlMv6kR7Vr8eiR8mg8aq/USrJs2O2Oa+LFiKkGR5WpXTts2xWXYwhDQNyEazxuVcybRjVbU3x0hAPnlkbzYcliiPaFF+G85jV9YUNxsUGUIwEQzqS4ugq890h1Om2LfoZXoVLuWvmnTQOEGL+j3FENLQAnYEqbvfPr1JGaQHxpjbH7GhvMw5pOkikLYeuK9hzMJhhhVZy6L8hCEbJN8NuXZSYWpsWYa9JrM1WheRh/JqkP/tFvzoQeo6c+jSeY8NbbGkRk3ppwlIBWOB1uR2rQlVlj91LXJ0lkQZekbrVhhoBqIAh3TdYgtIhSNrWvfKb0ouRqv6/SqeLozKJUsWE5ceP1yPOoY0mlaNajJ61AVy6lQPVgm0BlRlP4iBVrzXi1dtQgVS2XCzGcrUCIOPfimSTFZS7dkYBpoRVzASkMYlxVS9tqzDVjQ6NuGU3mYXa+s1LwQTB1IA7pDxtXIvqo7wTHtUBGQeoKv3GdpqiQPtdqMtm0zRkucEgRfm671jySSJQq+mZHS6xVVgrGEkIC/MIClG2iT1ql0dOWt2Lb4mF9zvq2ePTZ2Em6QUh7GhQx9OTRzzyWn5bm3+LJKO+Q4oGfnNdHrJrjASkENLukOkGEVWDzJpMg06m510TsbayIuPzMOsLqKENBHDycM+p4UnInGK8Su7hOqRvEA+J/CbcjRJW4+RgjSHDUHFaBs6yYKxEwyXNJuddxobsEcTvQV0JaSRbcxqazh9YWOdk/fg0fXBzsHBY7sWueRljEdrTJdZRwrG1khkYny81IMkbdFobExDKSvNrq6v1rcVOaRJm90qm0iAqNlfdjh+MT/iBOka7pn/LCu2Z8XoRhhjV1dWkCLFp7LUidn5UWx24lZq7SY2LTWMMVDc7A7YRaZ4Y9ectGSYeJKZzvmdZ5Zc2CVVbM8S5k0w7pO3NBCp6bxbxb5Y1/xMGe2s6o33h7dRaxcJj6ypi2gu17Cke+0zJdcCzfnniUPd5Lhn5s8Qi02GZt8FSDPGE+XtaazNVG/rOyJnRudHKYIar29+3SUFVj8UQxrLWJht5u7r7zl9HS4r7JjbLBsS5qQ07R2AzDphZMW13oNpGpeimp1YK1Rej+PEmjYKg3k8N2yXSS6AqefrCI+/Nn1mIdBh7rVei+gq9q1RXB+kyfmhmu0w/r9BG01B3jrUELa09qhdeuWjx+rbE8eKn3wpgM/4GTphSby7pbHHGBul6dbY2M6XMEnbaFOIzR7Zq3W1tAHH/sw69GWpBOzaPPAEHKh4VI4d7pHt2KZHxsJbnDAO1E3pgTfIltGoRMcj20G/aHnt2M/AMVsGr8GGvF1ZVwoEpXdMDBTXUeQdXxB0J3HGqK3wMloDpDGPjZptp9bYTjfkmL1wKQ3wUZfHroqm/SO37NOLr6YhXiwWmbZPsH1h1V3FHaMoq/YauVDTuEq0aDM+EG5DfCOO7UK271KqQg59YZugbv8onfVoBrE2gni+mGfyDe6fwdEJo1xMGtsfsuuC7JvjQ5u7hXJ7I46pRiHbc3Pr1Uohs6z0OtlS2ivqtSWmubN4YQRlfbuMR6kWkbJXliw6GmazG3EshbOF7Nj5+NG4w+Xp7IwqTnbmLuKu1HpHMtP1qF5m6GQGV4xx0s9tyDFVwF2dHPto37Gi6avHvGle45Gw7ir1a8v6GBFkDpKs/etuVfG7Dj2HszDLFhobcgyXCtmiQwlg2GVxPfTDLw0bmoLri703kfYtMCLI//zHkeWt00bpu4wjoAXvonKGN+SINqqQzdlWFeCRXXAVVfQAAAkmSURBVEoYXj3m9GuhstzObRfe9xQ4z6yPkWUXEu+1NlDXOTURrVaz2axvY44+H+5es6sWCg/dJp6k4EA2NW26ahjHPbvNCw/XET94mBgDRvHshuMeRz2OedF16sJyUMgWUnfhmCLOjzVnHh27Fyb1Sd6swzAvowx7w3NOpU9USgXX+aD2ktBmrLtg1JatZC9vBOnY680N5lEG7WaLkM8WiHpuzjGMzs/MkvzACMnjPgvwhORxb+YSL12D89sOEjmA6tB2EMddehAUvZRandQunr4R+LPMsddEfXs7gjYmjjYm7LsLRx9xfkYDY2AdXcMhi3xExxV2Dh5/4bwiL1OCMr23guubdm0lJ4MUHTHiBrVBzueCJLLeIIs2tkaxMfJPm3P0+dD5qdX0IBHjOu8vSPW+pkt0uzQ1/wpxdUOQsYkzRrV3PO3w/Bsyvd0TZG5i5TgZExtDPZQ7cSRe5GQFMuxLe3u1qljTzwbR1+u4tFqnm6YglSjagjG9ylWczYUFfW8VcyKDTBbz+XyuOq7JUl0JmI1qND3IEhtDqnB6d+JInJ9sjSwzS36Jtgfr1r6mvIoSDUt6Nm5ZmqyBtDUxq5RPTPzhzwL3P6RCplsmLyvHHy6G5N0gtYt80SBx8v5MU3a8S0w1oogWYMbciSM6PwhyBHFfNBotdSHt96fMYtPsSgMAm/i7tLrsfHWsvxHo6X5Zr1xNBSk6tsbMVRceoO8wOzkha3OkcyfHx8cnE/JatczhkEzw1wsqcB+6uhG+6AtiqtHGYPSWZ+7KkWg2Wm2ojgZgL5bOrTSCWSyjjDkUR2XNDY/DaPW2mJH+3THl1Y/jdV8upfSRxzZ9I9mQCXahvN8k1QaHMDgJxpS30pWPybTYc6vjTUGOUwrJMDqOeRLHENeHZFw24qgrPikRkNliK9fDYD1bMj3FcDQ/JDNgEu1ir9fCf10ykSIYY2WOEZiczLQOfgbJiqdYSqY9QAbNHtAFwRhjj2F0lYkdCZfsGM5jmuceG80cOJIWU6hCqxElq1H0hxQjzVLQcbqNOOp8AAUklYKNa5CXW+WP6VzruNU6Pj7fx5tgMye0y4PjTGaf/Lktc2zrZmXaSyW3Nkd9H7lSaooxcw61/YwoNnnuj1BmdWUrzhzDsurVYJAuj7EvzVJTHe2p84E34TjSg0wVZJLUkbJynMTYWK6VkdUmFhOV1pBKxtPDUSZ2BZPzq3PqdM4gV/HiGIH1OWogzX0jOjnnZC2f2CV3YAoTM44c1RbTj+e6rZnSbKI5VZs24pgY6Z2pVLZAXk9um9ZVOB7rH7l4AsNkG0ZdIA3jOBPLyEs8zQbgiTF/G46q+2PCKF7BFYEV6/AH+pwGSvCwLHO0K4XSq56CcfWyhI04JpmavpQnnCqVHDJLMseuxlHMBI8BO+YUHDK1E+aYlBvHDmXdiPfGPY8GWRmu/xLDFcirQ4Oljh2XM6wYPM8vBIgbW2Ou3D1x5LhSPUIRMYbHq+BtQ47MYL2SZxNH8TANI9IvA2HIdknD0N6lFM/5yYqq7s3RbTl8FPaMYfSrtistUtc3svRy8KTD/5Ee0TXP5GUhxVgGu5tg2YUjSqOgSBYbTk03srwpxwR4T6yxcoy1sIcu+Jl4jU3DBGp4k2JQDV3iXaZbdW+QSNydY7M+P+I/Xi2rwLS0pIWKkY3F05nY8Yg5egDysz0/Pz88PD/pwsUVM5I5Oo2ZhH2pRjbbbmBjTA31VWubcmQqa5XrmvU6xu4fK6XHteN9uoKJNhmDzFoFN82ukPmvLhzFs+mlIAhkQblVZlYBKWoYSX8pxo5fvv0FWfqDDCxg/DeEWppcD/rhrhzpPdEluFLG9X025ohd3BqTQswcSfeeYYNXV0E2E6Ome1VmTDj6YeYIskJf+e7CcVrn1WJe3VqritUe6XKOEIyd/F5CE0dtd416X8SjyJSHgxP0hzKuHIlgSG2sk9ucI3lzgvecOQtHGaaiYbFzWFVr01nUJQQZqVSM3WSEvN+1kqfmyE2vSU00WeOS4/jlqipaiWx05gStdOEXj6qyI3t1hQzHx0yGPawBU87tHx6izrhXOaDbaBrkvANHpiC/I2wDjooDdA76VI48Gz0FuV463dKDjDQwSuyrgYMjR7ZDVmy/mXbI3B/9+xhWDrlyYvRnm9fknYHoKuxnTiboeFHp0QW96U/m+Fofo4WLYBnjvAtHPKlrUYXP4IeLJorsiSnXrczqT04GxSJ92YCm0ONyMa5eujPHy7pSxkvW4TQMk7eMIMXzi8wRGVREB/0wcwWHIhRTpdQq5QfFQt9J8rMR2CTy7sSRaUM55VqPjxwzbAat9Ohkn9WxjLEzGJoqgNTVEfpjhqkWV6odSVbJW//UqTfOen2KBuYN+cGyAqwJZBA6PFyRXvGECcIxY35Bedkh5yInXuJ2Sb+7cWSSaYzcyXqQTtKfsEG220sV08RCHwZJZCiSwNC6io6e43gQb/vlzIS/VMR2m9TWhXLmiHpNDTVdF9b4GjcjyMw3B9L3cNyFyRCVAsPS24+mvWOOaBgIoKqjDFcTjvz9LsCgdb5/iBTt1ljRc8yh9lxUx2NygBpZcc6bY5OsZkz6R1qmvyQL1yYSajLJ0EeKfxQ4qVBuXbEAsy44vq76p+SIUupb3tq9En9CP78q2W5VUclth/5VjgXo02nv/jbZv+BPMOluf+bNcXqqs9dkA/Wg1HPrQcYuBf4NujnW+a8by7vg+I5EWz2mNTa9+t2fHmsvK3fVQcV95Mh61Emlg60oJFeqLWIHINFIynPJ0bXl58jR/YJdODbrCzLNk5OaZx2y8E+ELpCmtkgNpHgmhJbiO8X4r8WRPWOaoaO38gQdupQpE/GvBoJVkOLb+uk7xvivxRGF3WKZJY0KE2TpTbK87uqPaqx91nnXGP/lOK5Ei9N1A4xai3zXGH9WHN2WUV1d8Pq+HjU0xmtVW+S7xvhz4lh0XAdOJ8lbnDzpT1bM1SYUJGJc65ndQn5GHBMwmsW95M7tqIUB4ZX9Inp3kZ8RRybZy3nKrUt9LNKDoVvB8Ibyc+L4E0lkg+JUT/k/yPGfIh84vhv5wPHdyAeO70Y+cHw3ghxvKx842ki5n721OL5O6qeV/wWvR2u2wep7fwAAAABJRU5ErkJggg==",
-    keywords: ["project", "scala", "python"],
-    fullText: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel justo eu lectus bibendum porta sed a nunc.
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel justo eu lectus bibendum porta sed a nunc.
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel justo eu lectus bibendum porta sed a nunc.
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel justo eu lectus bibendum porta sed a nunc.
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel justo eu lectus bibendum porta sed a nunc.
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel justo eu lectus bibendum porta sed a nunc.
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel justo eu lectus bibendum porta sed a nunc.
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel justo eu lectus bibendum porta sed a nunc.
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel justo eu lectus bibendum porta sed a nunc.
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel justo eu lectus bibendum porta sed a nunc.
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel justo eu lectus bibendum porta sed a nunc.
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel justo eu lectus bibendum porta sed a nunc.
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel justo eu lectus bibendum porta sed a nunc.
-    `
-  },
-  {
-    id: 3,
-    title: "third project",
-    subtitle: "little title",
-    teaser: "Cause i'm a human after all, don't put your blame on me",
-    topic: WEB,
-    html: `<div class="font-weight-bold">Muto bueno this text is muy importante pour la suite</div>`,
-    teaserHtml: `<div class="font-weight-bold">Muto bueno this text is muy importante pour la suite</div>`
-  },
-  {
-    id: 4,
-    title: "Second project",
-    subtitle: "little title",
-    teaser: "Je ne suis qu'un texte voila tout",
-    topic: SOFTWARE,
     keywords: [
-      "project",
-      "noob",
-      "fine",
-      "okay",
-      "yes",
-      "sir",
-      "alright",
-      "mecton"
+      keywords.PYTHON,
+      keywords.MACHINE_LEARNING,
+      keywords.JUPYTER,
+      keywords.SKLEARN
+    ],
+    teaserHtml:
+      "Use of a classification algorithm to predict the survivor of the Titanic disaster",
+    html: `The subject of the project was found on a <span class="font-weight-bold">Kaggle competion</span>. 
+    Starting from the dataset found on Kaggle, I trained a classification algorithm to predict if a passenger
+    was likely to survive.`
+  },
+  {
+    title: "Car price prediction",
+    topic: DATA_SCIENCE,
+    keywords: [keywords.PYTHON, keywords.JUPYTER, keywords.SKLEARN],
+    teaserHtml:
+      "Use a regression algorithm to predict the price of a car according to its features.",
+    html: ``
+  },
+  {
+    title: "Spam detection",
+    topic: DATA_SCIENCE,
+    keywords: [
+      keywords.PYTHON,
+      keywords.MACHINE_LEARNING,
+      keywords.JUPYTER,
+      keywords.SKLEARN
     ]
   },
   {
-    id: 5,
-    title: "Second project",
+    title: "Blablapharma",
+    topic: WEB,
+    image: "images/blablapharma/cover.png",
+    keywords: [
+      keywords.VUE,
+      keywords.NUXT,
+      keywords.NODE,
+      keywords.JAVASCRIPT,
+      keywords.WEB_SOCKET
+    ],
+    teaserHtml: `Project carried out for the <span class="font-weight-bold font-italic green--text">Blablapharma</span> team.`,
+    html: `Blablapharma is website allowing to patients to directly contact pharmacists from the platform 
+    and share with them through the chat.<br />The purpose of the project is to ease the interaction between 
+    patients and pharmacists because the exchanges can be done anytime from anywhere.`
+  },
+  {
+    title: "Visual portal management",
+    topic: WEB,
+    keywords: [
+      keywords.JAVASCRIPT,
+      keywords.NODE,
+      keywords.REACT,
+      keywords.INDUSTRIAL_PROJECT,
+      keywords.MONGO_DB
+    ],
+    teaserHtml: `Web application which aims to transform data coming from various origin to match a specific 
+    output structure.`,
+    html: `<span class="grey--text font-weight-bold">Visual portal management</span> 
+        is a web application which handles data from various origins (csv, excel, twitter, google news) and transforms it
+        into a given format. Indeed the user chooses his data and precises the output format 
+        (by selecting an existing <u>template</u> or by creating his own <u>template</u>). 
+        The result of the transformation is returned through a micro service url. 
+        The application aims to exchange with another application which displays chart and provides to it the transformed data. 
+        `
+  },
+
+  {
+    title: "Clicky blinders",
+    topic: DATA_SCIENCE,
+    keywords: [
+      keywords.SCALA,
+      keywords.SPARK,
+      keywords.MACHINE_LEARNING,
+      keywords.SCHOOL_PROJECT
+    ],
+    teaserHtml: `An application to predict whether an user is going to click on an ad or not.`,
+    html: `Starting from a dataset of 1 millions rows, We trained a machine learning algorithm 
+    (<span class="font-italic">Logistic Regression</span>) to predict if an user is likely to click on an advertisement.
+    `
+  },
+
+  {
+    title: "Prello",
+    topic: WEB,
+    keywords: [
+      keywords.JAVASCRIPT,
+      keywords.NODE,
+      keywords.REACT,
+      keywords.POSTGRES,
+      keywords.ELECTRON,
+      keywords.SCHOOL_PROJECT
+    ],
+    image: "images/prello/cover.png",
+    teaserHtml: `A <span class="font-italic">Trello-like</span> application for students from Polytech Montpellier.`,
+    html: `<span>Prello</span> is an application which allows to students to manage their projects online as Trello would do.
+    The project is only intended to students from Polytech Montpellier and has also a desktop version.`
+  },
+
+  {
+    title: "Battleship",
+    topic: SOFTWARE,
+    keywords: [keywords.SCALA, keywords.SCHOOL_PROJECT],
+    teaserHtml: "A console battleship game.",
+    html: `<h2 class="text-center">Battleship Rules</h2>
+    <a class="font-italic" href="https://www.thesprucecrafts.com/the-basic-rules-of-battleship-411069">
+    https://www.thesprucecrafts.com/the-basic-rules-of-battleship-411069</a>
+    <p>
+    Players take turns firing shots (by calling out a grid coordinate) to attempt to hit the opponent's enemy ships.
+    On your turn, call out a letter and a number that identifies a row and column on your target grid. Your opponent checks 
+    that coordinate on their ocean grid and verbally responds "miss" if there is no ship there, or "hit" if you have 
+    correctly guessed a space that is occupied by a ship.
+    Mark each of your shots or attempts to fire on the enemy using your target grid (upper part of the board) by using 
+    white pegs to document your misses and red pegs to register your hits. As the game proceeds, the red pegs will 
+    gradually identify the size and location of your opponent's ships.
+    When it is your opponent's turn to fire shots at you, each time one of your ships receives a hit, put a red peg 
+    into the hole on the ship corresponding to the grid space. When one of your ships has every slot filled with red pegs,
+     you must announce to your opponent that he has sunk your ship. In classic play, the phrase is "You sunk my battleship!"
+      It is, of course, illegal to change the hiding position of your ships once play has begun. 
+    The first player to sink all five of his opponent's ships wins the game.</p>`
+  },
+  {
+    title: "Poll analysis",
+    topic: DATA_SCIENCE,
+    keywords: [keywords.R, keywords.R_STUDIO]
+  },
+
+  {
+    title: "Aniki",
+    topic: SOFTWARE,
+    keywords: [
+      keywords.JAVA,
+      keywords.JAVA_FX,
+      keywords.POSTGRES,
+      keywords.SCHOOL_PROJECT
+    ]
+  },
+
+  {
+    title: "MyPk",
     topic: MOBILE,
-    subtitle: "little title",
-    teaser: "Je ne suis qu'un texte voila tout"
+    keywords: [keywords.SWIFT, keywords.SCHOOL_PROJECT]
+  },
+
+  {
+    title: "La vallée des enfants",
+    topic: WEB,
+    image: "images/valleedesenfants/cover.png",
+    carousel: [
+      "images/valleedesenfants/cover.png",
+      "images/valleedesenfants/carousel_1.png",
+      "images/valleedesenfants/carousel_2.png",
+      "images/valleedesenfants/carousel_3.png"
+    ],
+    keywords: [
+      keywords.JAVASCRIPT,
+      keywords.VUE,
+      keywords.NODE,
+      keywords.EXPRESS,
+      keywords.INDUSTRIAL_PROJECT,
+      keywords.POSTGRES
+    ],
+    teaserHtml: `<span class="font-weight-bold font-italic">La vallée des enfants</span> 
+    is an industrial project carried out in my 4th year of engineering school.
+    <p>The project was intended to a french nursery which needed to present its 
+    activity and automate the computation of its contracts.</p>
+    By this way, the nurses were able to manage the contract of their children 
+    and each month easily compute the bill associated to a contract.
+    `,
+    html: `Within a group of 3 students, I developed this project for one and a half month. 
+      <p>This project consisted in a showcase site to present the nursery and 
+      an application to ease the management of its contracts.</p>`
+  },
+
+  {
+    title: "Simple chat",
+    topic: SOFTWARE,
+    keywords: [keywords.JAVASCRIPT, keywords.JAVA_FX, keywords.SCHOOL_PROJECT]
+  },
+
+  {
+    title: "Anonymous forum",
+    topic: WEB,
+    keywords: [keywords.NODE, keywords.JAVASCRIPT, keywords.SCHOOL_PROJECT]
+  },
+
+  {
+    title: "ChiCi Soap Factory",
+    topic: MOBILE,
+    keywords: [keywords.JAVA, keywords.LIBGDX, keywords.INTERNSHIP]
+  },
+
+  {
+    title: "Head shoulder knees and toes",
+    topic: MOBILE,
+    keywords: [keywords.ANDROID, keywords.JAVA, keywords.INTERNSHIP]
   }
 ];

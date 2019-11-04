@@ -1,16 +1,21 @@
 <template>
   <v-dialog v-model="showDialog" max-width="800">
     <v-card flat color="white" max-width="800">
-      <v-carousel v-if="project.carousel" cycle vertical height="300">
+      <v-carousel v-if="project.carousel" cycle height="450">
         <v-carousel-item
           v-for="image in project.carousel"
           :key="image"
           :src="image"
         ></v-carousel-item>
       </v-carousel>
-      <v-img v-else-if="project.image" :src="project.image"></v-img>
+      <v-img
+        v-else-if="project.image"
+        :src="project.image"
+        aspect-ratio="3.3"
+        contain
+      ></v-img>
 
-      <v-card-text class="pt-0" style="width: 100%">
+      <v-card-text class="pt-3">
         <h3
           class="display-1 text--primary pb-2 text-center grey--text text--darken-1"
         >
@@ -49,11 +54,7 @@
         <div class="text--primary grey--text text--darken-1">
           {{ project.fullText }}
         </div>
-        <div
-          v-if="project.html"
-          class="text-center"
-          v-html="project.html"
-        ></div>
+        <div v-if="project.html" v-html="project.html"></div>
       </v-card-text>
     </v-card>
   </v-dialog>
