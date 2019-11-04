@@ -9,17 +9,14 @@
 </template>
 
 <script>
-import NavBar from "./components/NavBar";
-import ProjectsWrapper from "./components/ProjectsWrapper";
+const NavBar = () => import("./components/NavBar");
+const ProjectsWrapper = () => import("./components/ProjectsWrapper");
 
 export default {
   name: "App",
   components: {
     ProjectsWrapper,
     NavBar
-  },
-  data: () => ({
-    //
-  })
+  }
 };
 </script>

@@ -104,8 +104,8 @@
 </template>
 
 <script>
-import Project from "./Project";
-import ProjectDialog from "./ProjectDialog";
+const Project = () => import("./Project");
+const ProjectDialog = () => import("./ProjectDialog");
 import { filterProjects } from "../resources/projectAccessor";
 import { mapState } from "vuex";
 export default {

@@ -5,12 +5,12 @@
         <v-carousel-item
           v-for="image in project.carousel"
           :key="image"
-          :src="image"
+          :src="require(`../assets/${image}`)"
         ></v-carousel-item>
       </v-carousel>
       <v-img
         v-else-if="project.image"
-        :src="project.image"
+        :src="require(`../assets/${project.image}`)"
         aspect-ratio="3.3"
         contain
       ></v-img>

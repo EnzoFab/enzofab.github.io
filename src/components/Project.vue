@@ -10,8 +10,13 @@
       >
         {{ title }}
       </h3>
-      <v-img v-if="image" :src="image" aspect-ratio="1.6" contain></v-img>
 
+      <v-img
+        v-if="image"
+        :src="require(`../assets/${image}`)"
+        aspect-ratio="1.6"
+        contain
+      ></v-img>
       <div v-else class="pa-3 text-center">
         <v-icon color="grey lighten-4" x-large>fas fa-briefcase</v-icon>
       </div>
