@@ -56,34 +56,48 @@
                 xs="12"
                 :key="project.id"
               >
-                <project
-                  :project-id="project.index"
-                  :title="project.title"
-                  :subtitle="project.subtitle"
-                  :teaser="project.teaser"
-                  :key-words="project.keywords"
-                  :image="project.image"
-                  :topic="project.topic"
-                  :teaser-html="project.teaserHtml"
-                  @project::displayMore="showModal"
-                />
+                <v-lazy
+                  :options="{
+                    threshold: 0.5
+                  }"
+                  transition="fade-transition"
+                >
+                  <project
+                    :project-id="project.index"
+                    :title="project.title"
+                    :subtitle="project.subtitle"
+                    :teaser="project.teaser"
+                    :key-words="project.keywords"
+                    :image="project.image"
+                    :topic="project.topic"
+                    :teaser-html="project.teaserHtml"
+                    @project::displayMore="showModal"
+                  />
+                </v-lazy>
               </v-col>
             </v-row>
           </v-col>
         </template>
         <template v-else>
           <v-col xs12 v-for="project in projects" :key="project.index">
-            <project
-              :project-id="project.index"
-              :title="project.title"
-              :subtitle="project.subtitle"
-              :teaser="project.teaser"
-              :key-words="project.keywords"
-              :image="project.image"
-              :topic="project.topic"
-              :teaser-html="project.teaserHtml"
-              @project::displayMore="showModal"
-            />
+            <v-lazy
+              :options="{
+                threshold: 0.5
+              }"
+              transition="fade-transition"
+            >
+              <project
+                :project-id="project.index"
+                :title="project.title"
+                :subtitle="project.subtitle"
+                :teaser="project.teaser"
+                :key-words="project.keywords"
+                :image="project.image"
+                :topic="project.topic"
+                :teaser-html="project.teaserHtml"
+                @project::displayMore="showModal"
+              />
+            </v-lazy>
           </v-col>
         </template>
       </v-row>
