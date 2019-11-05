@@ -35,7 +35,12 @@ export default [
   {
     title: "Car price prediction",
     topic: DATA_SCIENCE,
-    keywords: [keywords.PYTHON, keywords.JUPYTER, keywords.SKLEARN],
+    keywords: [
+      keywords.PYTHON,
+      keywords.JUPYTER,
+      keywords.MACHINE_LEARNING,
+      keywords.SKLEARN
+    ],
     teaserHtml:
       "Use a regression algorithm to predict the price of a car according to its features.",
     html:
