@@ -3,6 +3,7 @@ export default {
   NODE: "Nodejs",
   VUE: "Vuejs",
   REACT: "React",
+  ANGULAR: "Angular",
   SCALA: "Scala",
   JAVA: "Java",
   JAVA_FX: "JavaFx",

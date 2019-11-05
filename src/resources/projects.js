@@ -147,6 +147,17 @@ export default [
   },
 
   {
+    title: "SOP Manager",
+    topic: WEB,
+    image: "images/sop/cover.png",
+    keyWords: [keywords.NODE, keywords.ANGULAR, keywords.INTERNSHIP],
+    teaser:
+      "SOP Manager is a project management web application I created during my internship in Stikom Bali.",
+    html: `SOP Manager aims to manage each task of a project by regrouping them into sections or subsections. 
+      the manager can affect person or group of persons to specific tasks and follow the progress.`
+  },
+
+  {
     title: "La vallée des enfants",
     topic: WEB,
     image: "images/valleedesenfants/cover.png",
@@ -217,7 +228,11 @@ export default [
   {
     title: "Simple chat",
     topic: SOFTWARE,
-    keywords: [keywords.JAVASCRIPT, keywords.JAVA_FX, keywords.SCHOOL_PROJECT]
+    keywords: [keywords.JAVASCRIPT, keywords.JAVA_FX, keywords.SCHOOL_PROJECT],
+    teaser:
+      "Simple Chat is a desktop application allowing discuss with other person connected on the same server.",
+    html:
+      "Simple Chat is a desktop application allowing discuss with other person connected on the same server."
   },
 
   {
