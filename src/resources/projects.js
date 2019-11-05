@@ -27,7 +27,7 @@ export default [
       keywords.SKLEARN
     ],
     teaserHtml:
-      "Use of a classification algorithm to predict the survivor of the Titanic disaster",
+      "Use of a classification algorithm to predict the survivors of the Titanic disaster",
     html: `The subject of the project was found on a <span class="font-weight-bold">Kaggle competion</span>. 
     Starting from the dataset found on Kaggle, I trained a classification algorithm to predict if a passenger
     was likely to survive.`
@@ -38,7 +38,8 @@ export default [
     keywords: [keywords.PYTHON, keywords.JUPYTER, keywords.SKLEARN],
     teaserHtml:
       "Use a regression algorithm to predict the price of a car according to its features.",
-    html: ``
+    html:
+      "Use a regression algorithm to predict the price of a car according to its features."
   },
   {
     title: "Spam detection",
@@ -48,7 +49,10 @@ export default [
       keywords.MACHINE_LEARNING,
       keywords.JUPYTER,
       keywords.SKLEARN
-    ]
+    ],
+    teaser:
+      "Use of a classification algorithm to determine if a mail is a spam.",
+    html: "Use of a classification algorithm to determine if a mail is a spam."
   },
   {
     title: "Blablapharma",
@@ -141,28 +145,6 @@ export default [
       It is, of course, illegal to change the hiding position of your ships once play has begun. 
     The first player to sink all five of his opponent's ships wins the game.</p>`
   },
-  {
-    title: "Poll analysis",
-    topic: DATA_SCIENCE,
-    keywords: [keywords.R, keywords.R_STUDIO]
-  },
-
-  {
-    title: "Aniki",
-    topic: SOFTWARE,
-    keywords: [
-      keywords.JAVA,
-      keywords.JAVA_FX,
-      keywords.POSTGRES,
-      keywords.SCHOOL_PROJECT
-    ]
-  },
-
-  {
-    title: "MyPk",
-    topic: MOBILE,
-    keywords: [keywords.SWIFT, keywords.SCHOOL_PROJECT]
-  },
 
   {
     title: "La vallée des enfants",
@@ -192,6 +174,44 @@ export default [
     html: `Within a group of 3 students, I developed this project for one and a half month. 
       <p>This project consisted in a showcase site to present the nursery and 
       an application to ease the management of its contracts.</p>`
+  },
+
+  {
+    title: "La mutuelle des motards",
+    topic: DATA_SCIENCE,
+    image: "images/mutellemotards/cover.jpg",
+    keywords: [keywords.R, keywords.R_STUDIO],
+    teaser:
+      "Analyse the result of a survey on the habits of the bikers during the summer.",
+    html: `<a href="https://www.mutuelledesmotards.fr/" class="font-weight-bold blue--text" target="_blank">
+            La Mutuelle Des Motards</a> provided us the result of a survey they carried out
+    about the habits of the bikers during the summers. We analysed this result to extract trends and determine 
+    what the typical biker does during the summer, where does he go and with who. We were then able to create a poster
+    summarizing all this information.`
+  },
+
+  {
+    title: "Aniki",
+    topic: SOFTWARE,
+    image: "images/aniki/cover.png",
+    keywords: [
+      keywords.JAVA,
+      keywords.JAVA_FX,
+      keywords.POSTGRES,
+      keywords.SCHOOL_PROJECT
+    ],
+    teaser:
+      "Desktop application intended to the student office of Polytech Montpellier in order to manage " +
+      "the liquidity of the association.",
+    html:
+      "Desktop application intended to the student office of Polytech Montpellier in order to manage " +
+      "the liquidity of the association."
+  },
+
+  {
+    title: "MyPk",
+    topic: MOBILE,
+    keywords: [keywords.SWIFT, keywords.SCHOOL_PROJECT]
   },
 
   {
